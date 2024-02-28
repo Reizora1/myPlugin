@@ -12,7 +12,7 @@ public class MyPlugin extends JavaPlugin {
         System.out.println("PLUGIN HAS STARTED!!!!!!!!!!!!!");
         objectEvents obj = new objectEvents();
         playerEvents player = new playerEvents();
-        entityEvents entity = new entityEvents();
+        entityEvents entity = new entityEvents();sdasdad
         afkMonitor afk = new afkMonitor(this);
         //serverConfig config = new serverConfig();
 
