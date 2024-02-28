@@ -8,4 +8,3 @@ Now this section of text was modified from the local editbranch and pushed to th
 --removed this line in the local editbrnach and directly push it to the remote master.
 =======
 Now this section of text was modified from the local editbranch and pushed to the remote editbranch but will not be passed to the local and remote master branches..
->>>>>>> 548fc766705bbced3c63d8735ea1ecff806cd708
