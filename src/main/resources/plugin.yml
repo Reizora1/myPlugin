@@ -1,0 +1,29 @@
+name: myPlugin
+version: '${project.version}'
+main: me.reizora.dev.myplugin.MyPlugin
+api-version: '1.20'
+commands:
+  break:
+    description: Enable/disable blockBreak plugin.
+    usage: /<command>
+  place:
+    description: Enable/disable blockPlace plugin.
+    usage: /<command>
+  fly:
+    description: Enable/disable flight.
+    usage: /<command>
+  craft:
+    description: Open crafting table gui.
+    usage: /<command>
+  survival:
+    description: Set gamemode to survival.
+    usage: /<comnmand>
+  creative:
+    description: Set gamemode to creative.
+    usage: /<command>
+  night:
+    description: Set time to night.
+    usage: /<command>
+  day:
+    description: Set time to day.
+    usage: </command>
