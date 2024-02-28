@@ -10,6 +10,7 @@ public class MyPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         //I added something here hello.
+        //something got added here from another branch.
         System.out.println("PLUGIN HAS STARTED!!!!!!!!!!!!!");
         objectEvents obj = new objectEvents();
         playerEvents player = new playerEvents();
