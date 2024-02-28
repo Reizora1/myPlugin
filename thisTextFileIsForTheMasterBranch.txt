@@ -4,4 +4,4 @@ and made a git pull origin editbranch from the master branch.
 
 Now this section of text was modified from the local editbranch and pushed to the remote editbranch but will not be passed to the local and remote master branch.
 
-Now this section line of text was modified to test modification in the editbranch and pass it to the local master branch then pushign it to the remote master branch.
+Now this section line of text was modified to test modification in the editbranch and pass it to the local master branch then pushign it to the remote master branch..
