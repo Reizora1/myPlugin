@@ -2,7 +2,8 @@ I modified this textfile's content from the editbranch and is to be passed into 
 If you are reading this from the master, it means i succesfully made a commit to my local branch and pushed it to the remote branch then I requested a pull request from the editbranch to the master branch--
 and made a git pull origin editbranch from the master branch.
 
-
-Now this section of text was modified from the local editbranch and pushed to the remote editbranch but will not be passed to the local and remote master branch.
-
+<<<<<<< HEAD
 Now this section of text was modified from the local editbranch and pushed to the remote editbranch but will not be passed to the local and remote master branches.
+=======
+Now this section line of text was modified to test modification in the editbranch and pass it to the local master branch then pushign it to the remote master branch..
+>>>>>>> 41031c11eb8cfbe468b92a152d11de7d29b7fce7
