@@ -11,6 +11,7 @@ public class MyPlugin extends JavaPlugin {
     public void onEnable() {
         //I added something here hello.
         //something got added here from another branch.
+        //ang gi add ni dohanes.
         System.out.println("PLUGIN HAS STARTED!!!!!!!!!!!!!");
         objectEvents obj = new objectEvents();
         playerEvents player = new playerEvents();
