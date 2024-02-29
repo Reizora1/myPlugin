@@ -1,5 +1,6 @@
 package me.reizora.dev.myplugin;
 
+import me.reizora.dev.myplugin.commands.playerCommands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -11,12 +12,8 @@ import java.util.HashMap;
 
 public class afkMonitor {
     JavaPlugin plugin;
-    Location getSpawnLocation;
     public afkMonitor(JavaPlugin plugin){// Constructor for getting the plugin instance from the main class.
         this.plugin = plugin;
-    }
-    public afkMonitor(Location location){// Constructor for getting the location instance from the playerCommands.java
-        this.getSpawnLocation = location;
     }
 
     private static final long afkTimer = 10000L; // 1000L = 1sec.
@@ -53,7 +50,7 @@ public class afkMonitor {
     }
     private void teleportToSpawn(Player player) {
         World world = player.getWorld();
-        world.setSpawnLocation(getSpawnLocation);
+        world.setSpawnLocation(playerCommands.setSpawn);
         Location spawnLocation = world.getSpawnLocation();
 
         if(spawnLocation != null){
