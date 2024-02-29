@@ -4,17 +4,22 @@ package me.reizora.dev.myplugin.listeners;
 import me.reizora.dev.myplugin.afkMonitor;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 
-public class playerEvents implements Listener {
+import java.util.HashMap;
 
+public class playerEvents implements Listener {
+    public static final HashMap<Player, Location> playerJoinLocation = new HashMap<>();
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
-        Player player = event.getPlayer();
+        Player player =  event.getPlayer();
+        playerJoinLocation.put(player, player.getLocation());
+
         player.sendTitle(ChatColor.GREEN+ "WELCOME", ChatColor.GREEN+ "TO THE SERVER!", 50, 20, 10);
         if(player.hasPlayedBefore()){
             event.setJoinMessage(ChatColor.GREEN+ "Welcome back " +player.getName()+ "!");

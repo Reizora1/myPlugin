@@ -1,20 +1,20 @@
 package me.reizora.dev.myplugin.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.HashMap;
+
 public class playerCommands implements CommandExecutor {
     private boolean canFly = true;
+    public static final HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         Player player = (Player) sender;
-        World world = Bukkit.getWorld("world");
+        World world = player.getWorld();
 
         if (command.getName().equalsIgnoreCase("fly")) { // enable or disable flight on creative mode.
             if (sender != null) {
@@ -60,7 +60,17 @@ public class playerCommands implements CommandExecutor {
             world.setFullTime(1000);
             player.sendMessage("Time set to day.");
         }
+        else if (command.getName().equalsIgnoreCase("setspawn")) {
+            Location getSpawn = player.getLocation();
+            playerSpawnLocations.put(player, getSpawn);
 
+            world.setSpawnLocation(getPlayerSpawn(player));
+            player.sendMessage(ChatColor.GREEN+ "Spawn location set.");
+        }
         return true;
+    }
+
+    public static Location getPlayerSpawn(Player player){
+        return playerSpawnLocations.get(player);
     }
 }
