@@ -9,11 +9,12 @@ import org.bukkit.entity.Player;
 
 public class playerCommands implements CommandExecutor {
     private boolean canFly = true;
-    public static Location setSpawn;
+    Location setSpawn;
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         Player player = (Player) sender;
         World world = player.getWorld();
+        afkMonitor afk = new afkMonitor(setSpawn);
 
         if (command.getName().equalsIgnoreCase("fly")) { // enable or disable flight on creative mode.
             if (sender != null) {
@@ -60,8 +61,8 @@ public class playerCommands implements CommandExecutor {
             player.sendMessage("Time set to day.");
         } else if (command.getName().equalsIgnoreCase("setspawn")) {
             setSpawn = player.getLocation();
-            player.sendMessage("Spawn location set.");
         }
+
         return true;
     }
 }
