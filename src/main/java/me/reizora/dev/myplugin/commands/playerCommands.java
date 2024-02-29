@@ -10,13 +10,11 @@ import java.util.HashMap;
 
 public class playerCommands implements CommandExecutor {
     private boolean canFly = true;
-    Location getSpawn;
-    World world;
     public static final HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         Player player = (Player) sender;
-        World world = Bukkit.getWorld("world");
+        World world = player.getWorld();
 
         if (command.getName().equalsIgnoreCase("fly")) { // enable or disable flight on creative mode.
             if (sender != null) {
@@ -63,22 +61,16 @@ public class playerCommands implements CommandExecutor {
             player.sendMessage("Time set to day.");
         }
         else if (command.getName().equalsIgnoreCase("setspawn")) {
-            if(!(sender instanceof Player)){
-                sender.sendMessage("This command can only be executed by a player.");
-                return true;
-            }
-            world = player.getWorld();
-            getSpawn = player.getLocation();
+            Location getSpawn = player.getLocation();
             playerSpawnLocations.put(player, getSpawn);
 
             world.setSpawnLocation(getPlayerSpawn(player));
-
-            return true;
+            player.sendMessage(ChatColor.GREEN+ "Spawn location set.");
         }
         return true;
     }
 
     public static Location getPlayerSpawn(Player player){
-        return playerSpawnLocations.getOrDefault(player, player.getWorld().getSpawnLocation());
+        return playerSpawnLocations.get(player);
     }
 }
