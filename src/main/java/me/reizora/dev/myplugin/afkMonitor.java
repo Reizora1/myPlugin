@@ -11,9 +11,14 @@ import java.util.HashMap;
 
 public class afkMonitor {
     JavaPlugin plugin;
-    public afkMonitor(JavaPlugin plugin){
+    Location getSpawnLocation;
+    public afkMonitor(JavaPlugin plugin){// Constructor for getting the plugin instance from the main class.
         this.plugin = plugin;
     }
+    public afkMonitor(Location location){// Constructor for getting the location instance from the playerCommands.java
+        this.getSpawnLocation = location;
+    }
+
     private static final long afkTimer = 10000L; // 1000L = 1sec.
     public static final HashMap<Player, Long> lastRecordedMovement = new HashMap<>(); // HashMap to store player object as keys and the passed value; System.currentTimeMillis() as its value.
 
@@ -34,7 +39,7 @@ public class afkMonitor {
         // The update is necessary for the wasAFK variable to evaluate to either true or false.
     }
 
-    public void startIdleCheckTask() {
+    public void startIdleCheckTask() { // Method called to check for the current player's idle timer and teleport them to a location.
         Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 long lastMoveTime = lastRecordedMovement.getOrDefault(player, 0L);
@@ -48,7 +53,7 @@ public class afkMonitor {
     }
     private void teleportToSpawn(Player player) {
         World world = player.getWorld();
-        world.setSpawnLocation(782, 66, 206);
+        world.setSpawnLocation(getSpawnLocation);
         Location spawnLocation = world.getSpawnLocation();
 
         if(spawnLocation != null){
