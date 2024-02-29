@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 public class afkMonitor {
     JavaPlugin plugin;
+    World world;
     public afkMonitor(JavaPlugin plugin){
         this.plugin = plugin;
     }
@@ -48,7 +49,7 @@ public class afkMonitor {
         }, 0L, 20L * 10); // Check every 10 seconds (20 ticks * 10 seconds)
     }
     private void teleportToSpawn(Player player) {
-        World world = player.getWorld();
+        world = player.getWorld();
         world.setSpawnLocation(playerCommands.getPlayerSpawn(player));
         Location spawnLocation = world.getSpawnLocation();
 
