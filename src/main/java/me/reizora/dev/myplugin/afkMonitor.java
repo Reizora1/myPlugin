@@ -1,5 +1,6 @@
 package me.reizora.dev.myplugin;
 
+import me.reizora.dev.myplugin.commands.playerCommands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -48,7 +49,7 @@ public class afkMonitor {
     }
     private void teleportToSpawn(Player player) {
         World world = player.getWorld();
-        world.setSpawnLocation(782, 66, 206);
+        world.setSpawnLocation(playerCommands.getPlayerSpawn(player));
         Location spawnLocation = world.getSpawnLocation();
 
         if(spawnLocation != null){
