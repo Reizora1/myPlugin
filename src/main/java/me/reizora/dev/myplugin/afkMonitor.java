@@ -1,6 +1,7 @@
 package me.reizora.dev.myplugin;
 
 import me.reizora.dev.myplugin.commands.playerCommands;
+import me.reizora.dev.myplugin.listeners.playerEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -50,9 +51,15 @@ public class afkMonitor {
     }
     private void teleportToSpawn(Player player) {
         world = player.getWorld();
-        world.setSpawnLocation(playerCommands.getPlayerSpawn(player));
-        Location spawnLocation = world.getSpawnLocation();
 
+        if(playerCommands.getPlayerSpawn(player) != null){
+            world.setSpawnLocation(playerCommands.getPlayerSpawn(player));
+        }
+        else {
+            world.setSpawnLocation(playerEvents.playerJoinLocation.get(player));
+        }
+
+        Location spawnLocation = world.getSpawnLocation();
         if(spawnLocation != null){
             player.teleport(spawnLocation);
             player.sendMessage(ChatColor.GREEN + "You have been automatically teleported to spawn due to inactivity.");
