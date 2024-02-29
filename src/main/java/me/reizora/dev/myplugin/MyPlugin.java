@@ -21,8 +21,10 @@ public class MyPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(player, this);
         getServer().getPluginManager().registerEvents(entity, this);
 
+
         afk.startIdleCheckTask();
         //config.setServer();
+
 
         //eventCommands
         getCommand("break").setExecutor(new eventCommands(obj));
@@ -34,7 +36,6 @@ public class MyPlugin extends JavaPlugin {
         getCommand("survival").setExecutor(new playerCommands());
         getCommand("night").setExecutor(new playerCommands());
         getCommand("day").setExecutor(new playerCommands());
-        getCommand("setspawn").setExecutor(new playerCommands());
     }
 
     @Override

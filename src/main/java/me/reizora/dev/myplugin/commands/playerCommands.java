@@ -1,7 +1,9 @@
 package me.reizora.dev.myplugin.commands;
 
-import me.reizora.dev.myplugin.afkMonitor;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,12 +11,10 @@ import org.bukkit.entity.Player;
 
 public class playerCommands implements CommandExecutor {
     private boolean canFly = true;
-    Location setSpawn;
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         Player player = (Player) sender;
-        World world = player.getWorld();
-        afkMonitor afk = new afkMonitor(setSpawn);
+        World world = Bukkit.getWorld("world");
 
         if (command.getName().equalsIgnoreCase("fly")) { // enable or disable flight on creative mode.
             if (sender != null) {
@@ -59,8 +59,6 @@ public class playerCommands implements CommandExecutor {
         else if (command.getName().equalsIgnoreCase("day")) { // Sets absolute time to day.
             world.setFullTime(1000);
             player.sendMessage("Time set to day.");
-        } else if (command.getName().equalsIgnoreCase("setspawn")) {
-            setSpawn = player.getLocation();
         }
 
         return true;

@@ -27,6 +27,3 @@ commands:
   day:
     description: Set time to day.
     usage: </command>
-  setspawn:
-    description: Sets the current position as the spawn location.
-    usage: </command>
