@@ -21,11 +21,9 @@ public class MyPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(player, this);
         getServer().getPluginManager().registerEvents(entity, this);
 
-
         afk.startIdleCheckTask();
         //config.setServer();
-
-
+        
         //eventCommands
         getCommand("break").setExecutor(new eventCommands(obj));
         getCommand("place").setExecutor(new eventCommands(obj));
