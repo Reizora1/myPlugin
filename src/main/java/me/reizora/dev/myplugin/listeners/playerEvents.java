@@ -4,7 +4,6 @@ package me.reizora.dev.myplugin.listeners;
 import me.reizora.dev.myplugin.afkMonitor;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +14,7 @@ import java.util.HashMap;
 
 public class playerEvents implements Listener {
     public static final HashMap<Player, Location> playerJoinLocation = new HashMap<>();
+    public static final HashMap<Player, Location> playerLastLocation = new HashMap<>();
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
         Player player =  event.getPlayer();
@@ -40,9 +40,14 @@ public class playerEvents implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event){
-        Location getLastLocation = event.getPlayer().getLocation();
-        afkMonitor.playerMoved(event.getPlayer(), getLastLocation);
+        afkMonitor.playerMoved(event.getPlayer());
         //afkMonitor.lastRecordedMovement.put(event.getPlayer(), System.currentTimeMillis()); // <<<<<<<<<< THIS PIECE OF SHIT RIGHT HERE IF PLACED ABOVE THE playerMoved() WILL UPDATE THE HASHMAP TABLE WITH RECENT VALUE FROM THE currentTimeMillis AND THEREFORE THE EVALUATION OF THE wasAFK VARIABLE IN THE playerMoved() IS ALWAYS FUCKING FALSE.
+    }
+
+    @EventHandler
+    public void onPlayerTeleport(PlayerTeleportEvent event){
+        Player player = event.getPlayer();
+        playerLastLocation.put(player, event.getFrom());
     }
 
     @EventHandler
