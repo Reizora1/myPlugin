@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class playerCommands implements CommandExecutor {
     private boolean canFly = true;
-    public static final HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
+    private static final HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         Player player = (Player) sender;

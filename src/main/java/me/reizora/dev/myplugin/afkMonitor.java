@@ -18,7 +18,7 @@ public class afkMonitor {
         this.plugin = plugin;
     }
     private static final long afkTimer = 10000L;                                                        // 1000L = 1sec.
-    public static final HashMap<Player, Long> lastRecordedMovement = new HashMap<>();                   // HashMap to store player object as keys and the passed value; System.currentTimeMillis() as its value.
+    private static final HashMap<Player, Long> lastRecordedMovement = new HashMap<>();                   // HashMap to store player object as keys and the passed value; System.currentTimeMillis() as its value.
 
     public static void playerJoined(Player player){ // Immediately fetches the system time upon playerJoin and store it in the lastRecordedMovement hashmap.
         lastRecordedMovement.put(player, System.currentTimeMillis());
