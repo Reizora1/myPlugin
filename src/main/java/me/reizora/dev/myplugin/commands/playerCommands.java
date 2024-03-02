@@ -17,7 +17,7 @@ public class playerCommands implements CommandExecutor {
         World world = player.getWorld();
 
         if (command.getName().equalsIgnoreCase("fly")) { // enable or disable flight on creative mode.
-            if (sender != null) {
+            if (player.hasPermission("fly")) {
                 canFly = !canFly;
                 if (canFly){
                     System.out.println("Flight enabled.");
@@ -29,6 +29,9 @@ public class playerCommands implements CommandExecutor {
                     player.sendMessage("Flight disabled.");
                     player.setAllowFlight(canFly);
                 }
+            }
+            else {
+                player.sendMessage("You have no permission to execute that command!");
             }
         }
         else if (command.getName().equalsIgnoreCase("craft")) { // opens the crafting table GUI.
