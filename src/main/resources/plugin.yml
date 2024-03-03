@@ -30,3 +30,18 @@ commands:
   setspawn:
     description: Set current location as spawn point.
     usage: </command>
+  setmotd:
+    description: Set the server's motd.
+    usage: </command>
+  setSize:
+    description: Set the server's player capacity.
+    usage: </command>
+  setTimeout:
+    description: Set the player's inactivity timeout.
+    usage: </command>
+  setAFKTimer:
+    description: Set the afk timer for the server.
+    usage: </command>
+  getAFKTimer:
+    description: Get the current afk timer of the server.
+    usage: </command>

@@ -2,6 +2,7 @@ package me.reizora.dev.myplugin;
 
 import me.reizora.dev.myplugin.commands.eventCommands;
 import me.reizora.dev.myplugin.commands.playerCommands;
+import me.reizora.dev.myplugin.commands.serverCommands;
 import me.reizora.dev.myplugin.listeners.entityEvents;
 import me.reizora.dev.myplugin.listeners.objectEvents;
 import me.reizora.dev.myplugin.listeners.playerEvents;
@@ -14,16 +15,13 @@ public class MyPlugin extends JavaPlugin {
         playerEvents player = new playerEvents();
         entityEvents entity = new entityEvents();
         afkMonitor afk = new afkMonitor(this);
-        //serverConfig config = new serverConfig();
+        afk.startIdleCheckTask();
 
         //eventAPIs
         getServer().getPluginManager().registerEvents(obj, this);
         getServer().getPluginManager().registerEvents(player, this);
         getServer().getPluginManager().registerEvents(entity, this);
 
-        afk.startIdleCheckTask();
-        //config.setServer();
-        
         //eventCommands
         getCommand("break").setExecutor(new eventCommands(obj));
         getCommand("place").setExecutor(new eventCommands(obj));
@@ -35,6 +33,12 @@ public class MyPlugin extends JavaPlugin {
         getCommand("night").setExecutor(new playerCommands());
         getCommand("day").setExecutor(new playerCommands());
         getCommand("setspawn").setExecutor(new playerCommands());
+        //serverCommands
+        getCommand("setMOTD").setExecutor(new serverCommands());
+        getCommand("setSize").setExecutor(new serverCommands());
+        getCommand("setTimeout").setExecutor(new serverCommands());
+        getCommand("setAFKTimer").setExecutor(new serverCommands());
+        getCommand("getAFKTimer").setExecutor(new serverCommands());
     }
 
     @Override
