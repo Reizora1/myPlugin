@@ -6,10 +6,15 @@ import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.HashMap;
 
 public class serverCommands implements CommandExecutor {
+    public static final HashMap<Player, Long> setAfkTimer = new HashMap<>(); //hashmap for storing values set by /setafktimer. <<<<<<<<<<<<<<<<<<<<<<<<<
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+        Player player = (Player) sender;
         Server server = sender.getServer();
 
         if (command.getName().equalsIgnoreCase("setMOTD")) {
@@ -77,8 +82,7 @@ public class serverCommands implements CommandExecutor {
                 else {
                     long afkTime = Long.parseLong(args[0]);
                     afkMonitor.defaultAfkTimer = afkTime * 1000L;
-                    afkMonitor.newAfkTimer = afkTime;
-                    sender.sendMessage(ChatColor.GREEN+ "AFK timer updated!");
+                    sender.sendMessage(ChatColor.GREEN+ "AFK timer has been updated to " +(afkTime+ " seconds."));
                 }
             }
             else{

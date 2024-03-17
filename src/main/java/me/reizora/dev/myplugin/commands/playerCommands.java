@@ -1,5 +1,6 @@
 package me.reizora.dev.myplugin.commands;
 
+import me.reizora.dev.myplugin.listeners.playerEvents;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 
 public class playerCommands implements CommandExecutor {
     private boolean canFly = true;
-    private static final HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
+    public static final HashMap<Player, Location> playerSpawnLocations = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
         if (sender instanceof Player player){
@@ -66,6 +67,7 @@ public class playerCommands implements CommandExecutor {
             else if (command.getName().equalsIgnoreCase("setspawn")) {
                 Location getSpawn = player.getLocation();
                 playerSpawnLocations.put(player, getSpawn);
+                playerEvents.playerJoinLocation.remove(player);
 
                 world.setSpawnLocation(getPlayerSpawn(player));
                 player.sendMessage(ChatColor.GREEN+ "Spawn location set.");

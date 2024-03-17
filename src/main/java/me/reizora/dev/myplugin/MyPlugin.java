@@ -17,7 +17,7 @@ public class MyPlugin extends JavaPlugin {
         afkMonitor afk = new afkMonitor(this);
         afk.startIdleCheckTask();
 
-        //eventAPIs
+        //eventListeners
         getServer().getPluginManager().registerEvents(obj, this);
         getServer().getPluginManager().registerEvents(player, this);
         getServer().getPluginManager().registerEvents(entity, this);

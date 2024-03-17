@@ -2,8 +2,12 @@ package me.reizora.dev.myplugin.listeners;
 
 
 import me.reizora.dev.myplugin.afkMonitor;
+import me.reizora.dev.myplugin.commands.playerCommands;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +44,9 @@ public class playerEvents implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event){
-        afkMonitor.playerMoved(event.getPlayer());
+        Player player = event.getPlayer();
+        afkMonitor.playerMoved(player);
+        sandIsLava(player);
         //afkMonitor.lastRecordedMovement.put(event.getPlayer(), System.currentTimeMillis()); // <<<<<<<<<< THIS PIECE OF SHIT RIGHT HERE IF PLACED ABOVE THE playerMoved() WILL UPDATE THE HASHMAP TABLE WITH RECENT VALUE FROM THE currentTimeMillis AND THEREFORE THE EVALUATION OF THE wasAFK VARIABLE IN THE playerMoved() IS ALWAYS FUCKING FALSE.
     }
 
@@ -61,7 +67,7 @@ public class playerEvents implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event){
         Player player = event.getEntity();
         event.setDeathMessage(ChatColor.YELLOW+ "Player " +player.getName()+ " is gay because he died!");
-        //event.setNewLevel(10);
+        event.setNewLevel(10);
 
         //Bukkit.broadcastMessage(ChatColor.YELLOW+ "Player " +player.getName()+ " is gay because he died!");
         //player.sendMessage(player.getName()+ " has died...");
@@ -79,6 +85,19 @@ public class playerEvents implements Listener {
         String message = event.getMessage();
         if(message.equalsIgnoreCase("fuck you")){
             event.setMessage("I love you!");
+        }
+    }
+
+    void sandIsLava(Player player){
+        World world = player.getWorld();
+        Location loc = player.getLocation();
+        double blockX = loc.getX();
+        double blockY = loc.getY();
+        double blockZ = loc.getZ();
+        Block currentBlock = world.getBlockAt(new Location(world, blockX, blockY - 1, blockZ));
+
+        if (currentBlock.getType() == Material.SAND){
+            player.setFireTicks(100 * 20);
         }
     }
 }
