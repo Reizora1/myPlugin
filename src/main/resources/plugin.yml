@@ -3,45 +3,9 @@ version: '${project.version}'
 main: me.reizora.dev.myplugin.MyPlugin
 api-version: '1.20'
 commands:
-  break:
-    description: Enable/disable blockBreak plugin.
-    usage: /<command>
-  place:
-    description: Enable/disable blockPlace plugin.
-    usage: /<command>
-  fly:
-    description: Enable/disable flight.
-    usage: /<command>
-  craft:
-    description: Open crafting table gui.
-    usage: /<command>
-  survival:
-    description: Set gamemode to survival.
-    usage: /<comnmand>
-  creative:
-    description: Set gamemode to creative.
-    usage: /<command>
-  night:
-    description: Set time to night.
-    usage: /<command>
-  day:
-    description: Set time to day.
-    usage: </command>
-  setspawn:
-    description: Set current location as spawn point.
-    usage: </command>
-  setmotd:
-    description: Set the server's motd.
-    usage: </command>
-  setSize:
-    description: Set the server's player capacity.
-    usage: </command>
-  setTimeout:
-    description: Set the player's inactivity timeout.
-    usage: </command>
   setAFKTimer:
-    description: Set the afk timer for the server.
-    usage: </command>
-  getAFKTimer:
-    description: Get the current afk timer of the server.
-    usage: </command>
+    description: Set the time for counting as AFK
+    usage: /setAFKTimer <seconds>
+  LavaFloor:
+    description: The ground set you on Fire!
+    usage: /LavaFloor
