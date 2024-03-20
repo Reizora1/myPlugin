@@ -9,3 +9,6 @@ commands:
   LavaFloor:
     description: The ground set you on Fire!
     usage: /LavaFloor
+  setSpawn:
+    description: Set the spawn location when afk
+    use: /setSpawn

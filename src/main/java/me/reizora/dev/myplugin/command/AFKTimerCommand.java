@@ -10,7 +10,7 @@ public class AFKTimerCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player && isNumeric(strings[0])) {
-            Server.afkTimer = Integer.parseInt(strings[0]);
+            Server.afkTimer = Long.parseLong(strings[0]);
             commandSender.sendMessage("The AFK Timer is set to " + Server.afkTimer);
         }
         return true;

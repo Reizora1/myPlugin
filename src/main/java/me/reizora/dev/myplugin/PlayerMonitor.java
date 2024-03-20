@@ -9,15 +9,18 @@ import java.util.HashMap;
 public class PlayerMonitor {
 
     static int ticksCounter = 0;
+
     public static void checkAfk() {
-        for (HashMap.Entry<Player, Long> entry : Server.playerTimeList.entrySet()) {
-            if (System.currentTimeMillis() - entry.getValue() > Server.afkTimer*1000){
-                if (!Server.playerIsAFK.get(entry.getKey())) {
-                    Server.playerIsAFK.put(entry.getKey(), true);
-                    entry.getKey().setInvulnerable(true);
-                    Server.playerLastLocation.put(entry.getKey(), entry.getKey().getLocation());
-                    entry.getKey().teleport(new Location(entry.getKey().getWorld(), 0, 64, 0));
-                    entry.getKey().sendMessage("You are AFK");
+        for (HashMap.Entry<Player, HashMap<String, Object>> entry : Server.playersData.entrySet()) {
+            HashMap<String, Object> playerDetail = entry.getValue();
+            Player player = entry.getKey();
+            if (System.currentTimeMillis() - ((Long) playerDetail.get("playerTime")) > Server.afkTimer * 1000) {
+                if (!((Boolean) playerDetail.get("playerIsAFK")).booleanValue()) {
+                    playerDetail.put("playerIsAFK", new Boolean(true));
+                    player.setInvulnerable(true);
+                    playerDetail.put("playerLastLocation", player.getLocation());
+                    player.teleport((Location) playerDetail.get("playerSpawn"));
+                    player.sendMessage("You are AFK");
                 } else {
 
                     if (ticksCounter > 20 * Server.rewardInterval) {
@@ -28,14 +31,14 @@ public class PlayerMonitor {
                         ticksCounter++;
                     }
                 }
-            } else{
-                if (Server.playerIsAFK.get(entry.getKey())) {
-
-                    entry.getKey().teleport(Server.playerLastLocation.get(entry.getKey()));
-                    entry.getKey().setInvulnerable(false);
-                    Server.playerIsAFK.put(entry.getKey(), false);
-                    Server.playerLastLocation.remove(entry.getKey());
-                    entry.getKey().sendMessage("Leaving AFK");
+            } else {
+                player.sendMessage(String.valueOf(System.currentTimeMillis() - ((Long) playerDetail.get("playerTime"))));
+                if (((Boolean) playerDetail.get("playerIsAFK")).booleanValue()) {
+                    player.teleport(((Location) playerDetail.get("playerLastLocation")));
+                    player.setInvulnerable(false);
+                    playerDetail.put("playerIsAFK", new Boolean(false));
+                    playerDetail.remove("playerLastLocation");
+                    player.sendMessage("Leaving AFK");
                 }
             }
         }
